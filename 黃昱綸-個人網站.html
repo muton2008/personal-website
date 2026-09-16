@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黃昱綸｜學習歷程</title>
+<meta name="description" content="黃昱綸的個人網站——從好奇心到工程思維，機器人、校園系統與訊號處理的學習歷程。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect x='4' y='4' width='32' height='32' rx='3' fill='%23A73B2E' transform='rotate(-4 20 20)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --washi:#F5F0E6;
+    --washi-deep:#ECE4D2;
+    --sumi:#262220;
+    --sumi-soft:#5F594F;
+    --sumi-faint:#8B8474;
+    --shu:#A73B2E;
+    --shu-soft:#c97a63;
+    --line:#D9D0BC;
+    --serif:'Shippori Mincho', serif;
+    --sans:'Zen Kaku Gothic New', sans-serif;
+    --maxw-text:700px;
+    --maxw-wide:1080px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--washi);
+    background-image:radial-gradient(rgba(38,34,32,0.028) 1px, transparent 1px);
+    background-size:3px 3px;
+    color:var(--sumi);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:var(--serif);
+    font-weight:600;
+    margin:0;
+    color:var(--sumi);
+    letter-spacing:.01em;
+  }
+  p{margin:0 0 1em 0;}
+  a{color:inherit;text-decoration:none;}
+  ul,ol{margin:0;padding:0;list-style:none;}
+  img,svg{display:block;max-width:100%;}
+  button{font-family:inherit;background:none;border:none;cursor:pointer;color:inherit;}
+
+  a:focus-visible, button:focus-visible{outline:2px solid var(--shu);outline-offset:3px;}
+  ::selection{background:var(--shu);color:var(--washi);}
+
+  .icon{width:26px;height:26px;stroke:var(--sumi);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+  .icon.shu{stroke:var(--shu);}
+
+  /* ============ header ============ */
+  header.site-header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px clamp(20px,5vw,56px);
+    background:rgba(245,240,230,.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .wordmark{font-family:var(--serif);font-size:1.15rem;font-weight:600;display:flex;align-items:baseline;gap:8px;}
+  .wordmark .stamp{width:14px;height:14px;background:var(--shu);border-radius:2px;transform:rotate(-6deg);display:inline-block;}
+  nav.primary-nav{display:flex;gap:34px;}
+  nav.primary-nav a{font-size:.92rem;position:relative;padding-bottom:4px;color:var(--sumi-soft);transition:color .2s ease;}
+  nav.primary-nav a:hover{color:var(--sumi);}
+  nav.primary-nav a.active{color:var(--sumi);}
+  nav.primary-nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--shu);}
+  .nav-toggle{display:none;width:26px;height:20px;position:relative;flex-shrink:0;}
+  .nav-toggle span{position:absolute;left:0;right:0;height:1.5px;background:var(--sumi);transition:transform .25s ease, opacity .25s ease;}
+  .nav-toggle span:nth-child(1){top:0;}
+  .nav-toggle span:nth-child(2){top:9px;}
+  .nav-toggle span:nth-child(3){top:18px;}
+  .nav-toggle.open span:nth-child(1){transform:translateY(9px) rotate(45deg);}
+  .nav-toggle.open span:nth-child(2){opacity:0;}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg);}
+
+  .mobile-menu{
+    position:fixed;inset:0;background:var(--washi);z-index:90;
+    display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+    gap:clamp(18px,5vh,28px);padding:40px clamp(24px,8vw,60px);
+    transform:translateY(-8px);opacity:0;pointer-events:none;
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  .mobile-menu.open{opacity:1;pointer-events:auto;transform:translateY(0);}
+  .mobile-menu a{font-family:var(--serif);font-size:clamp(1.5rem,7vw,2rem);color:var(--sumi-soft);}
+  .mobile-menu a.active{color:var(--shu);}
+
+  /* ============ layout ============ */
+  main{padding-top:88px;min-height:100vh;}
+  .page{display:none;}
+  .page.visible{display:block;animation:page-in .5s ease both;}
+  @keyframes page-in{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+  .wrap-text{max-width:var(--maxw-text);margin:0 auto;padding:0 clamp(20px,6vw,40px);}
+  .wrap-wide{max-width:var(--maxw-wide);margin:0 auto;padding:0 clamp(20px,6vw,40px);}
+
+  section{padding:clamp(56px,9vw,108px) 0;}
+  section.tight{padding:clamp(36px,6vw,64px) 0;}
+  .eyebrow{font-size:.85rem;color:var(--sumi-faint);margin-bottom:10px;}
+
+  /* ============ hero ============ */
+  /* ============ hero ============ */
+  .hero { 
+    padding-top: clamp(64px,12vw,140px);
+    padding-bottom: clamp(40px,8vw,80px);
+  }
+
+  /* ============ page header ============ */
+  .page-header { 
+    padding-top: clamp(56px,10vw,96px);
+    padding-bottom: clamp(30px,5vw,48px);
+  }
+  .hero-byline{font-size:.95rem;color:var(--sumi-soft);margin-bottom:22px;}
+  .hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.5;font-weight:600;max-width:14ch;}
+  .ink-underline-wrap{position:relative;display:inline;}
+  .ink-underline{position:absolute;left:-2%;right:-2%;bottom:.02em;height:.5em;width:104%;pointer-events:none;}
+  .ink-underline path{fill:none;stroke:var(--shu);stroke-width:6;stroke-linecap:round;opacity:.35;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.4s .3s cubic-bezier(.65,0,.35,1) forwards;}
+  @media (prefers-reduced-motion: reduce){.ink-underline path{animation:none;stroke-dashoffset:0;}}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  .hero-sub{max-width:56ch;margin-top:28px;color:var(--sumi-soft);font-size:1.05rem;}
+  .hero-cta{display:flex;gap:18px;margin-top:36px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border:1px solid var(--sumi);font-size:.92rem;transition:background .2s ease, color .2s ease, border-color .2s ease;}
+  .btn:hover{background:var(--sumi);color:var(--washi);}
+  .btn.ghost{border-color:var(--line);color:var(--sumi-soft);}
+  .btn.ghost:hover{border-color:var(--shu);background:transparent;color:var(--shu);}
+
+  /* ============ timeline ============ */
+  .timeline{display:flex;flex-direction:column;}
+  .timeline-row{display:grid;grid-template-columns:44px 74px 1fr;gap:16px;padding:20px 0;border-top:1px solid var(--line);align-items:baseline;}
+  .timeline-row:last-child{border-bottom:1px solid var(--line);}
+  .timeline-num{font-family:var(--serif);color:var(--shu);font-size:.95rem;}
+  .timeline-stage{font-size:.9rem;color:var(--sumi-faint);}
+  .timeline-desc{color:var(--sumi);font-size:.98rem;}
+
+  /* ============ teasers ============ */
+  .teaser-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px;}
+  .teaser{background:var(--washi);padding:34px 28px;display:flex;flex-direction:column;gap:16px;}
+  .teaser h3{font-size:1.05rem;font-weight:600;}
+  .teaser p{font-size:.92rem;color:var(--sumi-soft);margin:0;}
+  .teaser .go{font-size:.85rem;color:var(--shu);margin-top:auto;}
+
+  /* ============ pull quote ============ */
+  .pull-quote{display:flex;gap:20px;align-items:flex-start;max-width:640px;}
+  .pull-quote .bar{width:2px;background:var(--shu);align-self:stretch;flex-shrink:0;min-height:60px;}
+  .pull-quote p{font-family:var(--serif);font-size:clamp(1.1rem,2.4vw,1.5rem);line-height:1.85;color:var(--sumi);margin:0;}
+
+  /* ============ page header ============ */
+  .page-header h1{font-size:clamp(1.8rem,4vw,2.6rem);}
+  .page-header .sub{margin-top:14px;color:var(--sumi-soft);font-size:1rem;max-width:52ch;}
+
+  /* ============ traits ============ */
+  .traits-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .trait{background:var(--washi);padding:32px 30px;display:flex;gap:18px;}
+  .trait-body h3{font-size:1.02rem;margin-bottom:10px;}
+  .trait-body p{font-size:.92rem;color:var(--sumi-soft);margin:0;}
+
+  /* ============ skills ============ */
+  .skill-row{display:grid;grid-template-columns:140px 1fr;gap:20px;padding:18px 0;border-top:1px solid var(--line);}
+  .skill-row:last-child{border-bottom:1px solid var(--line);}
+  .skill-label{font-size:.88rem;color:var(--sumi-faint);padding-top:4px;}
+  .chip-row{display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{border:1px solid var(--line);padding:6px 14px;font-size:.86rem;color:var(--sumi-soft);}
+
+  /* ============ projects ============ */
+  .project-item{padding:clamp(40px,6vw,64px) 0;border-top:1px solid var(--line);}
+  .project-item:last-child{border-bottom:1px solid var(--line);}
+  .project-head{display:flex;gap:18px;align-items:flex-start;margin-bottom:18px;}
+  .project-num{font-family:var(--serif);color:var(--shu);font-size:1rem;padding-top:6px;flex-shrink:0;width:30px;}
+  .project-title-wrap{flex:1;min-width:0;}
+  .project-title-wrap h3{font-size:1.3rem;margin-bottom:8px;}
+  .project-meta{font-size:.85rem;color:var(--sumi-faint);}
+  .project-icon{margin-left:auto;flex-shrink:0;}
+  .project-body{padding-left:48px;}
+  .project-body p{color:var(--sumi-soft);font-size:.97rem;max-width:64ch;}
+
+  /* image slot — fixed aspect ratio so it never distorts across screen sizes */
+  .project-media{
+    position:relative;
+    width:100%;
+    max-width:640px;
+    aspect-ratio:16/9;
+    border:1px solid var(--line);
+    background:var(--washi-deep);
+    overflow:hidden;
+    margin:4px 0 26px;
+  }
+  .project-media img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s ease;}
+  .project-media img.loaded{opacity:1;}
+  .media-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;opacity:0;pointer-events:none;color:var(--sumi-faint);transition:opacity .2s ease;}
+  .project-media.broken .media-fallback{opacity:1;}
+  .media-fallback svg{width:30px;height:30px;stroke:var(--sumi-faint);opacity:.7;}
+  .media-fallback span{font-size:.78rem;}
+
+  .project-sub{margin-top:6px;display:flex;flex-direction:column;gap:14px;}
+  .project-sub-item{display:grid;grid-template-columns:88px 1fr;gap:16px;font-size:.92rem;}
+  .project-sub-item dt{color:var(--sumi);font-weight:500;}
+  .project-sub-item dd{margin:0;color:var(--sumi-soft);}
+  .note{margin-top:22px;display:flex;gap:14px;max-width:60ch;}
+  .note .bar{width:2px;background:var(--shu-soft);flex-shrink:0;}
+  .note p{font-family:var(--serif);color:var(--sumi-soft);font-size:.96rem;margin:0;}
+
+  /* ============ honors ============ */
+  .honor-group{padding:32px 0;border-top:1px solid var(--line);}
+  .honor-group:last-child{border-bottom:1px solid var(--line);}
+  .honor-group h2{font-size:1.15rem;margin-bottom:20px;}
+  .honor-list{display:flex;flex-direction:column;gap:16px;}
+  .honor-row{display:grid;grid-template-columns:110px 1fr;gap:18px;font-size:.93rem;}
+  .honor-row .when{color:var(--sumi-faint);}
+  .honor-row .what{color:var(--sumi);}
+  .honor-row .what .org{display:block;color:var(--sumi-soft);font-size:.85rem;margin-top:2px;}
+
+  /* ============ contact ============ */
+  .contact-list{margin-top:32px;display:flex;flex-direction:column;}
+  .contact-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;border-top:1px solid var(--line);}
+  .contact-row:last-child{border-bottom:1px solid var(--line);}
+  .contact-row .label{color:var(--sumi-faint);font-size:.88rem;}
+  .contact-row .value{font-size:1.02rem;transition:color .2s ease;word-break:break-all;}
+  .contact-row a.value:hover{color:var(--shu);}
+
+  .future-plan{margin-top:44px;}
+  .future-plan h2{font-size:1.05rem;margin-bottom:16px;}
+  .future-plan p{color:var(--sumi-soft);font-size:.94rem;margin-bottom:8px;}
+
+  footer{border-top:1px solid var(--line);padding:32px clamp(20px,6vw,40px);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:.82rem;color:var(--sumi-faint);}
+
+  /* ============ responsive ============ */
+  @media (max-width:860px){
+    .teaser-grid{grid-template-columns:1fr;}
+    .traits-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:720px){
+    nav.primary-nav{display:none;}
+    .nav-toggle{display:block;}
+    .project-body{padding-left:0;margin-top:10px;}
+    .project-head{gap:12px;}
+    .project-icon{display:none;}
+    .honor-row{grid-template-columns:1fr;gap:4px;}
+    .skill-row{grid-template-columns:1fr;gap:8px;}
+    .project-media{max-width:100%;}
+  }
+  @media (max-width:520px){
+    .timeline-row{grid-template-columns:32px 60px 1fr;gap:10px;}
+    .project-sub-item{grid-template-columns:1fr;gap:2px;}
+    .contact-row{flex-direction:column;align-items:flex-start;gap:4px;}
+  }
+  @media (max-width:380px){
+    .hero h1{max-width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="#/" class="wordmark"><span class="stamp"></span>黃昱綸</a>
+  <nav class="primary-nav" id="primaryNav">
+    <a href="#/" data-route="/">首頁</a>
+    <a href="#/about" data-route="/about">關於我</a>
+    <a href="#/projects" data-route="/projects">專案作品</a>
+    <a href="#/honors" data-route="/honors">榮譽與經歷</a>
+    <a href="#/contact" data-route="/contact">聯絡我</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#/" data-route="/">首頁</a>
+  <a href="#/about" data-route="/about">關於我</a>
+  <a href="#/projects" data-route="/projects">專案作品</a>
+  <a href="#/honors" data-route="/honors">榮譽與經歷</a>
+  <a href="#/contact" data-route="/contact">聯絡我</a>
+</div>
+
+<main>
+
+  <!-- ================= HOME ================= -->
+  <section class="page" id="page-/">
+    <div class="hero wrap-text">
+      <p class="hero-byline">黃昱綸　・　國立高雄師範大學</p>
+      <h1>
+        理想的數據，總與
+        <span class="ink-underline-wrap">真實的世界
+          <svg class="ink-underline" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M2 12 Q 50 18, 100 10 T 198 9" pathLength="1"/>
+          </svg>
+        </span>
+        存在落差。
+      </h1>
+      <p class="hero-sub">
+        國中時因為好奇心寫下第一行 Python，如今我的專案跨足機器人偵查系統、校園行動應用、資安與訊號處理。比起追逐特定的框架，我更在意如何把一個模糊的需求，拆解成可以驗證、可以維護、值得信任的系統——並且喜歡留在理論與現實的落差裡，把技術一點一點修成真正能用的工具。
+      </p>
+      <div class="hero-cta">
+        <a class="btn" href="#/projects">閱讀專案作品</a>
+        <a class="btn ghost" href="#/about">關於我</a>
+      </div>
+    </div>
+
+    <section class="tight">
+      <div class="wrap-wide">
+        <p class="eyebrow">學習軌跡</p>
+        <div class="timeline" id="timelineList"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap-wide">
+        <p class="eyebrow">三個代表作</p>
+        <div class="teaser-grid" id="teaserGrid"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap-text">
+        <div class="pull-quote">
+          <div class="bar"></div>
+          <p>工程對我來說，不是背下更多框架，而是學會把技術、資料與使用者的需求，重新串連在一起。</p>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="page" id="page-/about">
+    <div class="page-header wrap-text">
+      <p class="eyebrow">關於我</p>
+      <h1>從好奇心到工程思維</h1>
+      <p class="sub">六個持續在我不同專案裡反覆出現的特質，以及正在累積的技能。</p>
+    </div>
+
+    <section class="tight">
+      <div class="wrap-wide">
+        <div class="traits-grid" id="traitsGrid"></div>
+      </div>
+    </section>
+
+    <section class="tight">
+      <div class="wrap-text">
+        <p class="eyebrow">技能</p>
+        <div id="skillsList"></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
+  <section class="page" id="page-/projects">
+    <div class="page-header wrap-text">
+      <p class="eyebrow">專案作品</p>
+      <h1>從公告轉發到校園系統的七段旅程</h1>
+      <p class="sub">依時間排序，每一個專案都是前一個留下來的問題的延伸。</p>
+    </div>
+    <div class="wrap-wide" id="projectsList"></div>
+  </section>
+
+  <!-- ================= HONORS ================= -->
+  <section class="page" id="page-/honors">
+    <div class="page-header wrap-text">
+      <p class="eyebrow">榮譽與經歷</p>
+      <h1>競賽、檢定與志工服務</h1>
+      <p class="sub">比起單一獎項，我更在意這些經歷疊加起來，如何一步步養成現在的工程習慣。</p>
+    </div>
+    <div class="wrap-text" id="honorsList"></div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="page" id="page-/contact">
+    <div class="page-header wrap-text">
+      <p class="eyebrow">聯絡我</p>
+      <h1>把技術用在真正重要的地方</h1>
+    </div>
+
+    <div class="wrap-text">
+      <p style="color:var(--sumi-soft);max-width:60ch;">
+        經歷這些跨領域的專案後，我越來越確定自己想走的方向：不只是學會更多框架或模型，而是理解如何把技術、資料、使用者與系統設計串連起來。接下來，我希望能在軟體工程、資料分析與人工智慧的基礎上繼續累積，把技術用在真正能改善生活、重視安全、也尊重使用者隱私的地方。
+      </p>
+
+      <div class="contact-list" id="contactList"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>黃昱綸　© 2026</span>
+  <span>國立南科實驗高級中學</span>
+</footer>
+
+<script>
+/* =====================================================================
+   內容設定區（CONTENT DATA）
+   -----------------------------------------------------------------
+   之後要新增／修改文字、專案、獎項，只需要編輯以下的資料，
+   不需要動到下面的 HTML 版型或 CSS。
+   例如：要新增第 8 個專案，只要在 PROJECTS 陣列最後加一個物件即可，
+   首頁「三個代表作」與「專案作品」頁會自動一起更新。
+   ===================================================================== */
+
+/* 圖示庫：每個 icon 只寫一次路徑，各處重複引用，避免重複貼 SVG 碼 */
+var ICONS = {
+  sprout:   '<path d="M16 28V16"/><path d="M16 16c0-5 4-8 9-8 0 5-3 9-9 9"/><path d="M16 16c0-4-3-6-7-6 0 4 2 7 7 7"/>',
+  venn:     '<circle cx="12" cy="12" r="8"/><circle cx="20" cy="12" r="8"/><circle cx="16" cy="19" r="8"/>',
+  flow:     '<path d="M4 22c4 0 4-8 8-8s4 8 8 8 4-14 8-14"/>',
+  bamboo:   '<path d="M16 28V14c0-4 3-7 6-9"/><path d="M12 18h4"/><path d="M14 23h2"/>',
+  ripple:   '<circle cx="16" cy="24" r="1.8"/><path d="M8 24a8 8 0 0116 0"/><path d="M3 24a13 13 0 0126 0"/>',
+  stairs:   '<path d="M6 26h6v-6h5v-6h5v-6h4"/>',
+  bell:     '<path d="M6 10a10 10 0 0120 0v6l3 5H3l3-5z"/><path d="M13 24a3 3 0 006 0"/>',
+  shield:   '<path d="M16 4l10 4v8c0 7-4.5 11-10 12-5.5-1-10-5-10-12V8z"/><path d="M12 16l3 3 6-6"/>',
+  robot:    '<rect x="9" y="12" width="14" height="12" rx="2"/><circle cx="13" cy="18" r="1.3"/><circle cx="19" cy="18" r="1.3"/><line x1="16" y1="12" x2="16" y2="7"/><circle cx="16" cy="5" r="2"/><line x1="9" y1="16" x2="6" y2="16"/><line x1="23" y1="16" x2="26" y2="16"/>',
+  flask:    '<path d="M13 4h6"/><path d="M14 4v7l-6 12a2 2 0 002 3h12a2 2 0 002-3l-6-12V4"/><path d="M10 19h12"/>',
+  wave:     '<path d="M4 16c3-6 5 6 8 0s5 6 8 0 5-6 8 0"/><circle cx="26" cy="8" r="2.2"/><line x1="28.2" y1="8" x2="28.2" y2="2"/>',
+  satellite:'<rect x="13" y="13" width="6" height="6" rx="1"/><line x1="8" y1="6" x2="12" y2="12"/><line x1="5" y1="3" x2="10" y2="9"/><line x1="24" y1="6" x2="20" y2="12"/><line x1="27" y1="3" x2="22" y2="9"/><line x1="16" y1="19" x2="16" y2="27"/><path d="M11 27h10"/>',
+  phone:    '<rect x="10" y="4" width="12" height="24" rx="2"/><line x1="14" y1="24" x2="18" y2="24"/><line x1="13" y1="9" x2="19" y2="9"/><line x1="13" y1="13" x2="19" y2="13"/><line x1="13" y1="17" x2="17" y2="17"/>'
+};
+function icon(name, cls){
+  return '<svg class="icon ' + (cls || '') + '" viewBox="0 0 32 32">' + (ICONS[name] || '') + '</svg>';
+}
+
+var TIMELINE = [
+  { num:'01', stage:'國中', desc:'因為對電腦的好奇開始自學 Python，接觸 Discord 與 Minecraft 後重新找回寫程式的熱情。' },
+  { num:'02', stage:'國三', desc:'自學開發 Discord 機器人，會考後自學取得 APCS 觀念 3 級分、實作 2 級分。' },
+  { num:'03', stage:'高一', desc:'開發公告自動轉發系統，並與朋友一起打進資安技能金盾獎決賽。' },
+  { num:'04', stage:'高二', desc:'加入 FRC 6998 機器人隊、完成自然科學探究專題，開發 MP3 轉五線譜系統獲校內專題特優。' },
+  { num:'05', stage:'高三', desc:'獨立開發南科校園 APP、參與 KIBO 太空機器人挑戰賽，取得 APCS 觀念 4／實作 3 與 APX 數學中級檢定。' }
+];
+
+var TRAITS = [
+  { icon:'sprout', title:'好奇心', desc:'國中因為對電腦的好奇開始自學 Python，後來又在 Discord 與 Minecraft 裡重新找回寫程式的熱情，習慣在 Stack Overflow 與官方文件裡把未知的問題拆解清楚。' },
+  { icon:'venn', title:'多領域探索', desc:'身為鋼琴彈奏者，我把數位訊號處理用在自己聽不懂的樂譜上；在自然科學課裡，我用回歸模型與 T-test 檢驗看似理所當然的假設。技術對我來說是一種到處都能使用的語言。' },
+  { icon:'flow', title:'問題解決', desc:'從公告轉發系統串接交通部即時資料，到在南科校園 APP 裡設計邀請碼與雙人驗證機制，我習慣先把隱私與資安的問題想過一輪，再動手寫程式。' },
+  { icon:'bamboo', title:'挫折應變', desc:'在資安金盾獎落選後，我轉而鑽研開發規範，把失敗經驗變成後來南科校園 APP 的安全設計基礎；面對錯誤訊息，也從挫折變成一種可以查閱、排除的邏輯練習。' },
+  { icon:'ripple', title:'社會回饋', desc:'在四場 STEAM 教育推廣活動裡，我試著把機器人與程式知識，轉譯成不同年齡的孩子都能懂的語言——原來我學會的東西，也能點亮別人的好奇心。' },
+  { icon:'stairs', title:'持續累積', desc:'從第一次 APCS 觀念 3、實作 2，到後來的觀念 4、實作 3，再到 APX 數學中級檢定——比起單次成績，我更在意每一次重新挑戰時是否真的比上一次更扎實。' }
+];
+
+var SKILLS = [
+  { label:'程式與框架', chips:['Python','JavaScript','TypeScript','Next.js','discord.py'] },
+  { label:'資料與工具', chips:['Google 試算表','Supabase','Firebase','Git'] },
+  { label:'關注領域', chips:['資訊安全','資料分析','數位訊號處理','物件偵測','爬蟲'] }
+];
+
+/*
+  圖片使用說明：
+  - 每個專案物件的 image 欄位是圖片路徑，建議統一放在 assets/projects/ 資料夾下。
+  - 建議尺寸：至少 1280×720（16:9），檔案盡量壓在 300KB 以內，網站會自動裁切成統一比例並限制最大顯示尺寸，
+    不會因為原始圖片大小而撐壞版面。
+  - 找不到檔案時會自動顯示一個安靜的預留框，之後把檔案放到指定路徑就會自動換成真實截圖。
+*/
+var PROJECTS = [
+  {
+    id:'proj-01', num:'01', icon:'bell',
+    title:'公告轉發系統',
+    meta:'高一　・　Python・BeautifulSoup・Discord Bot・交通部 TDX API',
+    teaser:'讀完 robots.txt 之後，用爬蟲把學校公告即時轉發進 Discord，後來也整合了 Ubike 與火車時刻。',
+    desc:'為了讓同學更方便接收學校公告，我用 Python 爬蟲搭配 Discord Bot 做了一套自動轉發系統。讀過 robots.txt 之後，我把爬取頻率設定為每 30 分鐘一次，並在每則公告間隔 30 秒，避免造成網站負擔；後來也串接了交通部 TDX 的資料服務，把 Ubike 與火車時刻整合進 Discord，讓查詢交通資訊更直覺。',
+    note:'這是我第一次體會到程式可以直接改變生活，也開始學會從使用者的角度思考。',
+    image:'assets/projects/proj-01.jpg', imageAlt:'公告轉發系統畫面截圖'
+  },
+  {
+    id:'proj-02', num:'02', icon:'shield',
+    title:'資安金盾獎與開發規範',
+    meta:'高一　・　CTF・SQL Injection・XSS・Next.js',
+    teaser:'金盾獎資安競賽入圍決賽，把攻擊者視角學到的漏洞知識，變成後來的開發安全習慣。',
+    desc:'我與朋友一起參加「金盾獎」資安競賽並入圍決賽，準備過程中透過 ctflearn.com 以攻擊者的角度學習 SQL 注入、XSS 注入與非對稱加密等漏洞。雖然最後沒有得名，但這次經驗讓我開始重視使用者資料的保護與權限管理，也促使我後來用 Next.js 動手做了一套登入系統，學習 Access Token、Refresh Token 與 Cookie 同源保護的關係。',
+    note:'沒有得名的挫折，後來變成南科校園 APP 裡最重要的安全設計基礎。',
+    image:'assets/projects/proj-02.jpg', imageAlt:'資安金盾獎入圍決賽證明'
+  },
+  {
+    id:'proj-03', num:'03', icon:'robot',
+    title:'FRC 6998：機器人競賽與教育推廣',
+    meta:'高一至高三　・　HTML・JavaScript・Google 試算表・2024／2026 兩屆國際賽',
+    teaser:'為機器人競賽開發的數據偵查與分析工具，協助隊伍在極短的賽事間隔中快速做出策略決策。',
+    desc:'在 FRC（FIRST Robotics Competition）機器人校隊裡，我負責開發比賽數據偵查與分析系統，用 HTML 和 JavaScript 結合 Google 試算表整理數據、繪製折線圖與雷達圖，協助隊伍在極短的賽事間隔中快速制定策略。這套系統後來和隊友一起寫成論文，在南科 FRC 2024 科技論壇發表並獲得特優論文獎。同時，我也參與了四場 STEAM 教育推廣活動，把機器人與程式知識轉化成不同年齡層都能理解的內容。團隊在 2024 年 Central Valley Regional 獲得 Team Sustainability Award，2026 年 Magnolia Regional 獲得 Impact Award。',
+    note:'在教學現場看見孩子理解時的表情，我第一次感受到「教育的力量」。',
+    image:'assets/projects/frc6998.png', imageAlt:'FRC 機器人競賽現場照片'
+  },
+  {
+    id:'proj-04', num:'04', icon:'flask',
+    title:'自然科學探究——從數據觀察到邏輯辯證',
+    meta:'高二　・　Toulmin 論證模型・回歸分析・T-test・水波槽實驗',
+    teaser:'用回歸模型與 T-test 檢驗身高與雙臂長的關係，也在水波槽實驗裡誠實面對理論與數據的落差。',
+    desc:'在生物、化學與物理探究課程中，我學會從觀察事實出發，透過 Toulmin 論證模型建立假說並討論合理性。在「全體身高與雙臂長關係」的研究裡，我用回歸模型分析相關係數，並用 T-test 檢定性別間的身高差異；在水波槽實驗中，我親手觀察到水波進入淺水區時的折射與波長縮短，也在干涉實驗的數據與理論存在落差時，選擇誠實記錄並分析測量誤差，而不是直接套用理論公式。',
+    note:'我學會的不只是統計工具，而是一套從數據到邏輯辯證的完整思考方式。',
+    image:'assets/projects/proj-04.jpg', imageAlt:'自然科學探究實驗照片'
+  },
+  {
+    id:'proj-05', num:'05', icon:'wave',
+    title:'MP3 自動轉五線譜',
+    meta:'高二　・　Python・Librosa・Music21・數位訊號處理',
+    teaser:'以鋼琴彈奏者的身分挑戰數位訊號處理，把泛音與雜訊中的旋律，一點一點篩選出來。',
+    desc:'身為鋼琴彈奏者，我常常因為缺乏絕對音感，面對喜歡的音樂卻找不到樂譜。為了解決這個問題，我自學 Librosa 與 Music21，開發了一套 MP3 自動轉五線譜系統，透過頻譜分析與 MIDI 檔案生成樂譜。過程中我刻意不依賴整段翻譯，而是逐一查閱生難單字讀完英文官方文件，藉此更精確掌握頻率分析與取樣率的邏輯。這個系統處理純電子單音時表現不錯，但面對真實樂器的泛音與雜訊，樂譜精確度仍有落差——於是我學著透過篩選分貝數與優化取樣頻率，在雜訊裡找出旋律的軌跡。',
+    note:'這次專題讓我在校內專題競賽拿下特優，也讓我想繼續研究更進階的音高偵測演算法，像是 YAAPT。',
+    image:'assets/projects/proj-05.jpg', imageAlt:'MP3 轉五線譜系統畫面截圖'
+  },
+  {
+    id:'proj-06', num:'06', icon:'satellite',
+    title:'KIBO 太空機器人挑戰賽',
+    meta:'高三　・　Java・Object Detection・資料增強 (Data Augmentation)',
+    teaser:'第一次用 Java 開發模擬太空環境的機器人程式，並在資料增強與真實場景的落差裡重新找方向。',
+    desc:'在 TASA、JAXA 與 NASA 共同舉辦的「KIBO 機器人挑戰賽」中，我第一次用 Java 開發模擬太空環境的 Astrobee 機器人程式。我負責影像辨識模型的訓練資料處理，用 Python 撰寫腳本做資料增強——對原始影像進行隨機翻轉、動態模糊與疊合處理，擴展訓練集的樣態。實測時我發現自行合成的增強資料和模擬器場景之間存在明顯落差，於是重新分析環境特徵，把重點放回標註精度與影像預處理流程，而不是單純增加資料量。',
+    note:'解決虛擬訓練與真實場景落差的關鍵，往往不在資料的多寡，而在資料的品質。',
+    image:'assets/projects/proj-06.jpg', imageAlt:'KIBO 太空機器人挑戰賽畫面'
+  },
+  {
+    id:'proj-07', num:'07', icon:'phone',
+    title:'南科校園 APP',
+    meta:'高三　・　TypeScript・Next.js・Supabase・Firebase Cloud Messaging・交通部 TDX API',
+    teaser:'結合課表、行事曆、交通與公告，從型別設計到雙人驗證機制，第一次獨立完成一整套系統。',
+    desc:'公告轉發系統上線後，因為學校網站遷移導致爬蟲失效，也因為 Discord 用戶太少，我決定重新開發一套結合課表、行事曆、交通與公告的校園 APP——這是我第一次從前端、後端到安全機制，完整規劃一整套系統。我刻意選擇用 TypeScript 開發，先定義資料型別、設計 API，再實作 API client，降低資料不一致與執行錯誤的風險；伺服器回應也不直接暴露錯誤訊息，而是在後台記錄，避免漏洞被輕易找到。',
+    subItems:[
+      { dt:'課表', dd:'因為隱私問題無法直接提供各班課表，我設計了 7 位英數混合的邀請碼，讓創建者可以邀請信任的人共同編輯與使用。' },
+      { dt:'行事曆', dd:'為了降低使用門檻，我沒有做登入系統，改用雙人驗證：白名單使用者互相確認後，才由伺服器簽發兩小時的 JWT session token；刪除動作也改為標註失效並記錄刪除者，避免重要事件被誤刪。' },
+      { dt:'公告', dd:'原本的關鍵字分類無法理解上下文，我改用 Gemini 先產生標註資料，為之後訓練 BERT 分類模型做準備，再透過 Firebase Cloud Messaging 依使用者設定推播通知。' },
+      { dt:'交通', dd:'串接交通部 TDX 的 API，並實作 60 秒的記憶體快取機制，減少重複請求造成的 API 消耗。' }
+    ],
+    note:'這是我從「興趣實作」跨越到「工程管理」的關鍵轉折——學會從零定義問題、規劃有規模的系統架構，也在技術變動中保持開發的彈性。',
+    image:'assets/projects/proj-07.jpg', imageAlt:'南科校園 APP 畫面截圖'
+  }
+];
+
+/* 首頁「三個代表作」要引用哪幾個專案，直接填 id 就好，內容會自動從 PROJECTS 取用 */
+var FEATURED_PROJECT_IDS = ['proj-07', 'proj-03', 'proj-05'];
+
+var HONORS = [
+  { title:'競賽', items:[
+    { when:'2026', what:'FRC Magnolia Regional — Impact Award', org:'國際競賽・團隊獎項' },
+    { when:'2024', what:'FRC Central Valley Regional — Team Sustainability Award', org:'國際競賽・團隊獎項' },
+    { when:'2023', what:'資安技能金盾獎 — 入圍決賽', org:'國內競賽・行政法人國家資通安全研究院主辦' },
+    { when:'校內', what:'資訊學科能力競賽 校內初賽 — 第二名' },
+    { when:'校內', what:'校內專題競賽 歷程組 — 特優，入圍決賽', org:'主題：MP3 轉五線譜' }
+  ]},
+  { title:'檢定與證書', items:[
+    { when:'APCS', what:'觀念 4 級分・實作 3 級分' },
+    { when:'APX', what:'全國高中數理能力檢定 — 數學科 中級 通過' },
+    { when:'SCIST', what:'南臺灣學生資訊社群 C++ 基礎班 — 結訓證書', org:'資料結構・複雜度分析' }
+  ]},
+  { title:'論文發表與研討會', items:[
+    { when:'2024', what:'第 4 屆南科 FRC 科技論壇 — 特優論文獎', org:'〈FIRST 機器人競賽賽事勘查之數據蒐集與分析方式之研究〉，與林郁翔、徐珥安、黃妍喜合著' },
+    { when:'2024', what:'FRC 十四校聯合經驗交流會 — 分享者', org:'國立中科高級實驗中學主辦' }
+  ]},
+  { title:'志工服務', items:[
+    { when:'2023', what:'台灣科學節新竹科普市集 — 分享者', org:'國立臺灣科學教育館、國立清華大學領域科學教育中心主辦' },
+    { when:'2023–24', what:'南管局親子太陽能車活動機器人推廣 — 分享者', org:'南科科學園區管理局主辦，針對台南市民' },
+    { when:'2024', what:'北門國中教育推廣 — 分享者', org:'針對偏鄉學童' }
+  ]}
+];
+
+var CONTACT = {
+  email:'allenyellow11@gmail.com',
+  github:'muton2008',
+  githubUrl:'https://github.com/muton2008'
+};
+
+/* =====================================================================
+   版型渲染（RENDER）—— 一般不需要修改這一段
+   ===================================================================== */
+
+function renderTimeline(){
+  document.getElementById('timelineList').innerHTML = TIMELINE.map(function(t){
+    return '<div class="timeline-row">'
+      + '<span class="timeline-num">' + t.num + '</span>'
+      + '<span class="timeline-stage">' + t.stage + '</span>'
+      + '<span class="timeline-desc">' + t.desc + '</span>'
+      + '</div>';
+  }).join('');
+}
+
+function renderTeasers(){
+  document.getElementById('teaserGrid').innerHTML = FEATURED_PROJECT_IDS.map(function(id){
+    var p = PROJECTS.filter(function(pr){ return pr.id === id; })[0];
+    if(!p) return '';
+    return '<a class="teaser" href="#/projects#' + p.id + '">'
+      + icon(p.icon)
+      + '<h3>' + p.title + '</h3>'
+      + '<p>' + p.teaser + '</p>'
+      + '<span class="go">閱讀完整內容 →</span>'
+      + '</a>';
+  }).join('');
+}
+
+function renderTraits(){
+  document.getElementById('traitsGrid').innerHTML = TRAITS.map(function(t){
+    return '<div class="trait">'
+      + icon(t.icon, 'shu')
+      + '<div class="trait-body"><h3>' + t.title + '</h3><p>' + t.desc + '</p></div>'
+      + '</div>';
+  }).join('');
+}
+
+function renderSkills(){
+  document.getElementById('skillsList').innerHTML = SKILLS.map(function(s){
+    return '<div class="skill-row">'
+      + '<span class="skill-label">' + s.label + '</span>'
+      + '<div class="chip-row">' + s.chips.map(function(c){ return '<span class="chip">' + c + '</span>'; }).join('') + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+function renderProjects(){
+  var container = document.getElementById('projectsList');
+  container.innerHTML = PROJECTS.map(function(p){
+    var subHtml = '';
+    if(p.subItems && p.subItems.length){
+      subHtml = '<dl class="project-sub">' + p.subItems.map(function(s){
+        return '<div class="project-sub-item"><dt>' + s.dt + '</dt><dd>' + s.dd + '</dd></div>';
+      }).join('') + '</dl>';
+    }
+    return '<div class="project-item" id="' + p.id + '">'
+      + '<div class="project-head">'
+      +   '<span class="project-num">' + p.num + '</span>'
+      +   '<div class="project-title-wrap"><h3>' + p.title + '</h3><p class="project-meta">' + p.meta + '</p></div>'
+      +   icon(p.icon, 'project-icon')
+      + '</div>'
+      + '<div class="project-body">'
+      +   '<div class="project-media" data-placeholder="' + p.title + '">'
+      +     '<img src="' + p.image + '" alt="' + p.imageAlt + '" loading="lazy">'
+      +     '<div class="media-fallback">' + icon(p.icon) + '<span>尚未上傳圖片</span></div>'
+      +   '</div>'
+      +   '<p>' + p.desc + '</p>'
+      +   subHtml
+      +   '<div class="note"><div class="bar"></div><p>' + p.note + '</p></div>'
+      + '</div>'
+      + '</div>';
+  }).join('');
+
+  var imgs = container.querySelectorAll('.project-media img');
+  for(var i = 0; i < imgs.length; i++){
+    (function(img){
+      img.addEventListener('load', function(){ img.classList.add('loaded'); });
+      img.addEventListener('error', function(){ img.closest('.project-media').classList.add('broken'); });
+    })(imgs[i]);
+  }
+}
+
+function renderHonors(){
+  document.getElementById('honorsList').innerHTML = HONORS.map(function(group){
+    return '<div class="honor-group">'
+      + '<h2>' + group.title + '</h2>'
+      + '<div class="honor-list">' + group.items.map(function(it){
+          return '<div class="honor-row">'
+            + '<span class="when">' + it.when + '</span>'
+            + '<span class="what">' + it.what + (it.org ? '<span class="org">' + it.org + '</span>' : '') + '</span>'
+            + '</div>';
+        }).join('') + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+function renderContact(){
+  document.getElementById('contactList').innerHTML =
+    '<div class="contact-row"><span class="label">Email</span><a class="value" href="mailto:' + CONTACT.email + '">' + CONTACT.email + '</a></div>'
+    + '<div class="contact-row"><span class="label">GitHub</span><a class="value" href="' + CONTACT.githubUrl + '" target="_blank" rel="noopener">' + CONTACT.github + '</a></div>';
+}
+
+renderTimeline();
+renderTeasers();
+renderTraits();
+renderSkills();
+renderProjects();
+renderHonors();
+renderContact();
+
+/* =====================================================================
+   路由（ROUTER）—— 用網址 hash 切換頁面，例如 #/projects
+   ===================================================================== */
+(function(){
+  var routes = ['/', '/about', '/projects', '/honors', '/contact'];
+  var pages = {};
+  routes.forEach(function(r){ pages[r] = document.getElementById('page-' + r); });
+
+  var navLinks = document.querySelectorAll('[data-route]');
+  var navToggle = document.getElementById('navToggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+
+  function parseHash(){
+    var h = window.location.hash || '#/';
+    h = h.replace(/^#/, '');
+    var hashPos = h.indexOf('#');
+    var anchor = null;
+    if(hashPos !== -1){
+      anchor = h.slice(hashPos + 1);
+      h = h.slice(0, hashPos);
+    }
+    if(h === '') h = '/';
+    if(!pages[h]) h = '/';
+    return { route: h, anchor: anchor };
+  }
+
+  function render(){
+    var parsed = parseHash();
+    routes.forEach(function(r){ pages[r].classList.remove('visible'); });
+    void pages[parsed.route].offsetWidth;
+    pages[parsed.route].classList.add('visible');
+
+    navLinks.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('data-route') === parsed.route);
+    });
+
+    closeMobileMenu();
+    window.scrollTo(0, 0);
+
+    if(parsed.anchor){
+      setTimeout(function(){
+        var el = document.getElementById(parsed.anchor);
+        if(el){ el.scrollIntoView({ behavior:'smooth', block:'start' }); }
+      }, 60);
+    }
+  }
+
+  function openMobileMenu(){
+    mobileMenu.classList.add('open');
+    navToggle.classList.add('open');
+    navToggle.setAttribute('aria-expanded', 'true');
+  }
+  function closeMobileMenu(){
+    mobileMenu.classList.remove('open');
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+  navToggle.addEventListener('click', function(){
+    if(mobileMenu.classList.contains('open')){ closeMobileMenu(); } else { openMobileMenu(); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeMobileMenu();
+  });
+
+  window.addEventListener('hashchange', render);
+  render();
+})();
+</script>
+
+</body>
+</html>
